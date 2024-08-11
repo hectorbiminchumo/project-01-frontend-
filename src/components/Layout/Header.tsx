@@ -1,12 +1,23 @@
 import { Link } from "react-router-dom";
-import HeartIcon from "../../images/heartIcon";
-import Button from "../../atoms/Button";
-import CartIcon from "../../images/cartIcon";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { lime, brown } from '@mui/material/colors';
+import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import { Button } from '@mui/material';
+
+const theme = createTheme({
+    palette: {
+      primary: lime,
+      secondary: brown,
+    },
+  });
 
 export default function Header() {
 
     return (
         <>
+        <ThemeProvider theme={theme}>
             <header id="header-bg" className=" relative flex flex-wrap  h-60 ">
                 <nav className=" flex w-screen ">
                     <div className="w-full xl:px-12 py-6 px-5 flex space-x-12 items-center ">
@@ -20,17 +31,17 @@ export default function Header() {
                         <ul className="hidden md:flex mx-auto px-5 font-semibold space-x-12  ">
                             <li>
                                 <Link className="hover:text-white " to="/">
-                                    <Button label='Home'/>
+                                    <Button variant="text" color="secondary">Home</Button>
                                 </Link>
                             </li>
                             <li>
                                 <Link className="hover:text-gray-900" to="/books">
-                                    <Button label='New Books'/>
+                                    <Button variant="text" color="secondary">New Books</Button>
                                 </Link>
                             </li>
                             <li>
                                 <Link className="hover:text-gray-900" to="/booksUsed">
-                                    <Button label='Used Books'/>
+                                    <Button variant="text" color="secondary">Used Books</Button>
                                 </Link>
                             </li>
                         </ul>
@@ -50,20 +61,7 @@ export default function Header() {
                                     <div className="hidden xl:flex items-center text-gray-600 space-x-5">
                                         {/* persona */}
                                         <Link className="hover:text-gray-900" to="/profile">
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                className="h-6 w-6"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                stroke="currentColor"
-                                            >
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeWidth="2"
-                                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                                                />
-                                            </svg>
+                                        <PersonOutlinedIcon />
                                             <span className="absolute flex ml-5 -mt-5">
                                                 <span className="h-3 w-3 animate-ping absolute inline-flex rounded-full bg-green-500 opacity-75"></span>
                                                 <span className="h-3 w-3 relative inline-flex rounded-full bg-green-600"></span>
@@ -75,8 +73,10 @@ export default function Header() {
                                             className="flex items-center hover:text-gray-900"
                                             to="/cart"
                                         >
-                                          <CartIcon />
+                                          <ShoppingCartOutlinedIcon />
                                         </Link>
+                                        <FavoriteBorderOutlinedIcon />
+                                        
                                     </div>
 
                                     <a
@@ -89,7 +89,6 @@ export default function Header() {
                                 </>
                         </div>
                     </div>
-                <HeartIcon />
                  
                     <Link
                         className="flex xl:hidden items-center mr-6 hover:text-red-900"
@@ -118,6 +117,7 @@ export default function Header() {
                    
                 </nav>
             </header>
+            </ThemeProvider>
         </>
     );
 }
