@@ -1,27 +1,34 @@
+import { Book, BookState } from '../../interface/interface';
 
 
-const reducer = (globalState, action) => {
+// Define the action type with possible actions and payloads
+interface Action {
+  type: "GET_BOOK" | "UPDATE_BOOK" | "GET_BOOKS";
+  payload: Book | Book[];
+}
 
-	switch (action.type) {
+// Reducer function with proper typing
+const reducer = (globalState: BookState, action: Action): BookState => {
 
-		case "GET_BOOK":
-		case "UPDATE_BOOKS":
-			return {
-				...globalState,
-				singleBook: action.payload
-			}
+  switch (action.type) {
 
-		case "GET_BOOKS":
-			return {
-				...globalState,
-				books: action.payload
-			}
+    case "GET_BOOK":
+    case "UPDATE_BOOK":
+      return {
+        ...globalState,
+        singleBook: action.payload as Book, // Type assertion to ensure `payload` is of type `Book`
+      };
 
-		default:
-			return globalState
+    case "GET_BOOKS":
+      return {
+        ...globalState,
+        books: action.payload as Book[], // Type assertion to ensure `payload` is an array of `Book`
+      };
 
-	}
+    default:
+      return globalState;
+  }
 
 }
 
-export default reducer
+export default reducer;
