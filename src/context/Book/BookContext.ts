@@ -13,6 +13,6 @@ interface BookContextType {
 }
 
 // Create the context with the correct type, initially set to `null`
-const BookContext = createContext<BookContextType | null>(null);
+const BookContext = createContext<any | null>(null);
 
 export default BookContext;

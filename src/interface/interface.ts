@@ -2,10 +2,8 @@
 export interface Book {
     _id: string;
     title: string;
-    author: string;
     description: string;
     price: string;
-    condition: string;
     image: string;
     pages: string;
   }
@@ -21,10 +19,8 @@ export interface BookState {
     singleBook: {
       _id: "",
       title: "",
-      author: "",
       description: "",
       price: "",
-      condition: "",
       image: "",
       pages: "",
     }
