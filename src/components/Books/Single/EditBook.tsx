@@ -11,7 +11,6 @@ export default function Edit() {
   const idBook = params.id;
 
   const ctx = useContext(BookContext);
-console.log(ctx);
 
   const { singleBook, getBook, updateBook } = ctx;
 

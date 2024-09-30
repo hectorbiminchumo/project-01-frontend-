@@ -5,6 +5,9 @@ import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { Button } from '@mui/material';
+import { useContext } from "react";
+import CartContext from "../../context/Cart/CartContext";
+import { Book } from "../../interface/interface";
 
 const theme = createTheme({
     palette: {
@@ -14,6 +17,10 @@ const theme = createTheme({
   });
 
 export default function Header() {
+    const cartCtx= useContext(CartContext);
+    const totalCartItems = cartCtx.items.reduce((totalNumberOfItems: number, item: Book) => {
+        return totalNumberOfItems + item.quantity;
+    }, 0)
 
     return (
         <>
@@ -74,6 +81,7 @@ export default function Header() {
                                             to="/cart"
                                         >
                                           <ShoppingCartOutlinedIcon />
+                                          <Button color="success" size="large">({totalCartItems})</Button>
                                         </Link>
                                         <FavoriteBorderOutlinedIcon />
                                         
