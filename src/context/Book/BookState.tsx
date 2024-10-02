@@ -1,13 +1,9 @@
-import { useReducer, ReactNode } from 'react'
+import { useReducer } from 'react'
 import BookContext from './BookContext'
 import BookReducer from './BookReducer'
-import { Book, initialState } from '../../interface/interface'
+import { Book, initialState, Props } from '../../interface/interface'
 import axiosClient from "../../config/axios"
 
-// Define the props for BookState component
-interface Props {
-  children: ReactNode;
-}
 
 const BookState: React.FC<Props> = ({children}) => {
   // 2. Setup reducer and global state
@@ -17,8 +13,6 @@ const BookState: React.FC<Props> = ({children}) => {
 
   const getBooks = async () => {
     const res = await axiosClient.get("books/readall");
-    console.log("Getting books...");
-    console.log(res);
 
     const list = res.data.data;
 
@@ -29,11 +23,8 @@ const BookState: React.FC<Props> = ({children}) => {
   };
 
   const getBook = async (bookId: string) => {
-    console.log("This is the id", bookId);
 
     const res = await axiosClient.get(`books/readone/${bookId}`);
-    console.log(res);
-
     const selectedBook = res.data.data;
 
     dispatch({
