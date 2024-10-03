@@ -14,11 +14,7 @@ const Modal: React.FC<ModalProps> = ({ children, open, className = '' }) => {
   useEffect(() => {
     const modal = dialog.current;
     if (modal) {
-      if (open) {
-        modal.showModal();
-      } else {
-        modal.close();
-      }
+      open ? modal.showModal() : modal.close()    
     }
   }, [open]);
 

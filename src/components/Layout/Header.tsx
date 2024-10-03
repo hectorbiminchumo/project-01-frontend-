@@ -73,7 +73,6 @@ export default function Header() {
                             
                                 <>
                                     <div className="hidden xl:flex items-center text-gray-600 space-x-5">
-                                        {/* persona */}
                                         <Link className="hover:text-gray-900" to="/profile">
                                         <PersonOutlinedIcon />
                                             <span className="absolute flex ml-5 -mt-5">
@@ -81,9 +80,7 @@ export default function Header() {
                                                 <span className="h-3 w-3 relative inline-flex rounded-full bg-green-600"></span>
                                             </span>
                                         </Link>
-
-                                        {/* //carrito */}
-                                       
+                                
                                           <ShoppingCartOutlinedIcon />
                                           
                                           <Button color="success" size="large" onClick={handleShowCart}> Cart ({totalCartItems})</Button>
