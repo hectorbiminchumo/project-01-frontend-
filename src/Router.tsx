@@ -4,10 +4,13 @@ import Books from './components/Books/Books'
 import BookState from './context/Book/BookState';
 import CartState from './context/Cart/CartState';
 import SingleBook from './components/Books/Single/SingleBook';
+import UserProgressState from './context/User/UserProgressState';
+import Cart from './components/Cart/Cart';
 
 const Router = () => {
   return (
     <>
+        <UserProgressState>
         <CartState>
         <BookState>
         <BrowserRouter>
@@ -17,9 +20,11 @@ const Router = () => {
                   <Route path="books/:id" element={ <SingleBook />}/>
                 </Route>
             </Routes>
+            <Cart/>
         </BrowserRouter>
         </BookState>
         </CartState>
+        </UserProgressState>
     </>
   )
 }

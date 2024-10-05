@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 
-// Define the shape of a book object
 export interface Props {
   children: ReactNode;
 }
@@ -8,7 +7,7 @@ export interface Book {
     _id: string;
     title: string;
     description: string;
-    price: string;
+    price: number;
     image: string;
     pages: string;
     quantity: number
@@ -27,7 +26,7 @@ export interface BookState {
       _id: "",
       title: "",
       description: "",
-      price: "",
+      price: 0,
       image: "",
       pages: "",
       quantity: 0,
@@ -40,7 +39,20 @@ export interface BookState {
     items: [],
   };
 
+  export interface CartContextType {
+    items: Book[]; 
+    addItem: (item: Book) => void;
+  }
+
   export interface Action {
     type: "ADD_ITEM";
     payload: Book;
+  }
+
+  export interface UserProgressContextType {
+    progress: string;
+    showCart: () => void;
+    hideCart: () => void;
+    showCheckout: () => void;
+    hideCheckout: () => void;
   }

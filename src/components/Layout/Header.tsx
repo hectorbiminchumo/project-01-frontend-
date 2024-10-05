@@ -8,6 +8,7 @@ import { Button } from '@mui/material';
 import { useContext } from "react";
 import CartContext from "../../context/Cart/CartContext";
 import { Book } from "../../interface/interface";
+import UserProgressContext from "../../context/User/UserProgressContext";
 
 const theme = createTheme({
     palette: {
@@ -18,9 +19,15 @@ const theme = createTheme({
 
 export default function Header() {
     const cartCtx= useContext(CartContext);
-    const totalCartItems = cartCtx.items.reduce((totalNumberOfItems: number, item: Book) => {
+    const userProgressCtx = useContext(UserProgressContext);
+    
+    const totalCartItems = cartCtx?.items.reduce((totalNumberOfItems: number, item: Book) => {
         return totalNumberOfItems + item.quantity;
     }, 0)
+
+    const handleShowCart = () => {
+        userProgressCtx.showCart()
+    }
 
     return (
         <>
@@ -66,7 +73,6 @@ export default function Header() {
                             
                                 <>
                                     <div className="hidden xl:flex items-center text-gray-600 space-x-5">
-                                        {/* persona */}
                                         <Link className="hover:text-gray-900" to="/profile">
                                         <PersonOutlinedIcon />
                                             <span className="absolute flex ml-5 -mt-5">
@@ -74,15 +80,11 @@ export default function Header() {
                                                 <span className="h-3 w-3 relative inline-flex rounded-full bg-green-600"></span>
                                             </span>
                                         </Link>
-
-                                        {/* //carrito */}
-                                        <Link
-                                            className="flex items-center hover:text-gray-900"
-                                            to="/cart"
-                                        >
+                                
                                           <ShoppingCartOutlinedIcon />
-                                          <Button color="success" size="large">({totalCartItems})</Button>
-                                        </Link>
+                                          
+                                          <Button color="success" size="large" onClick={handleShowCart}> Cart ({totalCartItems})</Button>
+                                        
                                         <FavoriteBorderOutlinedIcon />
                                         
                                     </div>
