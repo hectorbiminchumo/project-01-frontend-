@@ -56,3 +56,11 @@ export interface BookState {
     showCheckout: () => void;
     hideCheckout: () => void;
   }
+
+  export interface CartItemProps {
+    name: string;
+    quantity: number;
+    price: number;
+    onIncrease: () => void;
+    onDecrease: () => void;
+  }
