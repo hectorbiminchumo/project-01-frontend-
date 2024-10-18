@@ -42,6 +42,7 @@ export interface BookState {
   export interface CartContextType {
     items: Book[]; 
     addItem: (item: Book) => void;
+    removeItem: (id: string) => void;
   }
   export interface AddItemAction {
   type: "ADD_ITEM";
