@@ -43,11 +43,16 @@ export interface BookState {
     items: Book[]; 
     addItem: (item: Book) => void;
   }
+  export interface AddItemAction {
+  type: "ADD_ITEM";
+  payload: Book;
+}
+  export interface RemoveItemAction {
+  type: "REMOVE_ITEM";
+  payload: string; 
+}
 
-  export interface Action {
-    type: "ADD_ITEM";
-    payload: Book;
-  }
+  export type CartAction = AddItemAction | RemoveItemAction;
 
   export interface UserProgressContextType {
     progress: string;
