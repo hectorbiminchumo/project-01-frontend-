@@ -30,7 +30,7 @@ function Checkout() {
     const customerData = Object.fromEntries(fd.entries()); // Convert FormData to object
 
     // Send order request
-    fetch('http://localhost:3000/orders', {
+    fetch('http://localhost:3005/orders/create', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -39,7 +39,8 @@ function Checkout() {
         order: {
           items: cartCtx.items,
           customer: customerData,
-        },
+        }
+        
       }),
     });
   }
@@ -55,7 +56,7 @@ function Checkout() {
         <Input label="Street" type="text" id="street" />
 
         <div className="control-row">
-          <Input label="Postal Code" type="text" id="postal-code" />
+          <Input label="Postal Code" type="text" id="postalCode" />
           <Input label="City" type="text" id="city" />
         </div>
 
