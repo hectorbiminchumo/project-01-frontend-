@@ -5,9 +5,10 @@ import { Props } from '../../interface/interface';
 interface ModalProps extends Props {
   open: boolean; 
   className?: string; 
+  onClose?: () => void;
 }
 
-const Modal: React.FC<ModalProps> = ({ children, open, className = '' }) => {
+const Modal: React.FC<ModalProps> = ({ children, open, className = '', onClose }) => {
 
   const dialog = useRef<HTMLDialogElement | null>(null);
 
@@ -19,7 +20,7 @@ const Modal: React.FC<ModalProps> = ({ children, open, className = '' }) => {
   }, [open]);
 
   return ReactDOM.createPortal(
-    <dialog ref={dialog} className={`modal ${className}`}>
+    <dialog ref={dialog} className={`modal ${className}`} onClose={onClose}>
       {children}
     </dialog>,
     document.getElementById('modal') as HTMLElement

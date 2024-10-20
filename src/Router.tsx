@@ -6,6 +6,7 @@ import CartState from './context/Cart/CartState';
 import SingleBook from './components/Books/Single/SingleBook';
 import UserProgressState from './context/User/UserProgressState';
 import Cart from './components/Cart/Cart';
+import Checkout from './components/Checkout';
 
 const Router = () => {
   return (
@@ -21,6 +22,7 @@ const Router = () => {
                 </Route>
             </Routes>
             <Cart/>
+            <Checkout />
         </BrowserRouter>
         </BookState>
         </CartState>

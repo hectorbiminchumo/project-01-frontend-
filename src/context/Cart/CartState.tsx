@@ -19,9 +19,14 @@ const CartState: React.FC<Props> = ({children}) => {
     });
   };
 
+  const removeItem = (id: string) => {
+    dispatchCartAction({ type: 'REMOVE_ITEM', payload: id })
+  }
+
   const cartContext = {
     items: cart.items,
-    addItem
+    addItem,
+    removeItem
   }
 
 

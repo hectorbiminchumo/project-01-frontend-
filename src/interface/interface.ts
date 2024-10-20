@@ -42,12 +42,18 @@ export interface BookState {
   export interface CartContextType {
     items: Book[]; 
     addItem: (item: Book) => void;
+    removeItem: (id: string) => void;
   }
+  export interface AddItemAction {
+  type: "ADD_ITEM";
+  payload: Book;
+}
+  export interface RemoveItemAction {
+  type: "REMOVE_ITEM";
+  payload: string; 
+}
 
-  export interface Action {
-    type: "ADD_ITEM";
-    payload: Book;
-  }
+  export type CartAction = AddItemAction | RemoveItemAction;
 
   export interface UserProgressContextType {
     progress: string;
@@ -55,4 +61,12 @@ export interface BookState {
     hideCart: () => void;
     showCheckout: () => void;
     hideCheckout: () => void;
+  }
+
+  export interface CartItemProps {
+    name: string;
+    quantity: number;
+    price: number;
+    onIncrease: () => void;
+    onDecrease: () => void;
   }
