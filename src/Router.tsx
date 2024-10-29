@@ -7,14 +7,21 @@ import SingleBook from './components/Books/Single/SingleBook';
 import UserProgressState from './context/User/UserProgressState';
 import Cart from './components/Cart/Cart';
 import Checkout from './components/Checkout';
+import NightModeToggle from './components/NightModeToggle';
+import { useThemeContext } from './components/theme/ThemeContextProvider';
+import { CssBaseline, ThemeProvider } from '@mui/material';
 
 const Router = () => {
+  const { theme } = useThemeContext();
   return (
     <>
+        <ThemeProvider theme={theme}>
+        <CssBaseline />
         <UserProgressState>
         <CartState>
         <BookState>
         <BrowserRouter>
+            <NightModeToggle />
             <Routes>
                 <Route path="/" element={<Layout />} >
                   <Route path='books' element={<Books/>} />
@@ -27,6 +34,7 @@ const Router = () => {
         </BookState>
         </CartState>
         </UserProgressState>
+        </ThemeProvider>
     </>
   )
 }
