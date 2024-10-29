@@ -18,7 +18,7 @@ const Navbar = () => {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <div className="flex items-center justify-between p-4 mx-auto cursor-pointer sm:max bg-slate-600">
+        <div className="flex items-center justify-between p-4 mx-auto cursor-pointer sm:max">
           <Link to="/">
             <h1 className="text-3xl ">Only
               <span className="font-bold">Books</span>
