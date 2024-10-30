@@ -2,14 +2,16 @@ import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
 import { Link } from 'react-router-dom';
-import { Button } from '@mui/material';
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { lime, brown } from '@mui/material/colors';
+import { lime, brown, grey } from '@mui/material/colors';
+import NightModeToggle from '../NightModeToggle';
+import Button from '../UI/Button';
 
 const theme = createTheme({
   palette: {
-    primary: lime,
-    secondary: brown,
+    primary: grey,
+    secondary: lime,
   },
 });
 
@@ -17,7 +19,7 @@ const theme = createTheme({
 const Navbar = () => {
   return (
     <>
-      <ThemeProvider theme={theme}>
+      {/* <ThemeProvider theme={theme}> */}
         <div className="flex items-center justify-between p-4 mx-auto cursor-pointer sm:max">
           <Link to="/">
             <h1 className="text-3xl ">Only
@@ -30,17 +32,17 @@ const Navbar = () => {
             <ul className="hidden md:flex mx-auto px-5 font-semibold space-x-12  ">
               <li>
                 <Link className="hover:text-white " to="/">
-                  <Button variant="text" color="secondary">Home</Button>
+                  <Button >Home</Button>
                 </Link>
               </li>
               <li>
                 <Link className="hover:text-gray-900" to="/books">
-                  <Button variant="text" color="secondary">New Books</Button>
+                  <Button >New Books</Button>
                 </Link>
               </li>
               <li>
                 <Link className="hover:text-gray-900" to="/booksUsed">
-                  <Button variant="text" color="secondary">Used Books</Button>
+                  <Button >Used Books</Button>
                 </Link>
               </li>
             </ul>
@@ -53,9 +55,10 @@ const Navbar = () => {
             <ShoppingCartOutlinedIcon />
             <FavoriteBorderOutlinedIcon />
             <PersonOutlinedIcon />
+            <NightModeToggle />
           </div>
         </div>
-      </ThemeProvider>
+      {/* </ThemeProvider> */}
     </>
 
   )

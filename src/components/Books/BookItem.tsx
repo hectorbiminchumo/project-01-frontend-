@@ -23,7 +23,7 @@ function BookItem({book}) {
                 <p className='book-item-description'>{book.description}</p>
             </div>
             <p className='book-item-actions'>
-                <Button onClick={handleAddBookToCart}>Add to Cart</Button>
+                <Button variant='contained'onClick={handleAddBookToCart}>Add to Cart</Button>
             </p>
         </article>
     </li>

@@ -177,18 +177,18 @@ body {
 .button {
   font: inherit;
   cursor: pointer;
-  background-color: #c0f4df;
-  border: 1px solid #c3eec3;
-  color: #1f1a09;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  color: #000000;
   padding: 0.5rem 1.5rem;
   border-radius: 4px;
 }
 
 .button:hover,
 .button:active {
-  background-color: #7ae311;
-  border-color: #9de4a7;
-  color: #1f1a09;
+  background-color: #000000;
+  border-color: #ffffff;
+  color: #ffffff;
 }
 
 .text-button {

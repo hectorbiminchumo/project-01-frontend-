@@ -16,8 +16,8 @@ const NightModeToggle = () => {
         color: "text.primary",
         borderColor: "text.primary",
         border: "1px solid",
-        borderRadius: 25,
-        p: 2,
+        borderRadius: 10,
+        p: 1,
       }}
     >
       {mode} mode
