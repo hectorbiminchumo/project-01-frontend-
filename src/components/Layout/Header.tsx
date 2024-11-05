@@ -4,11 +4,12 @@ import { lime, brown } from '@mui/material/colors';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
-import { Button } from '@mui/material';
+
 import { useContext } from "react";
 import CartContext from "../../context/Cart/CartContext";
 import { Book } from "../../interface/interface";
 import UserProgressContext from "../../context/User/UserProgressContext";
+import Button from "../UI/Button";
 
 const theme = createTheme({
     palette: {
