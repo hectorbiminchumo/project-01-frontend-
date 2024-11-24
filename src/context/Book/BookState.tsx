@@ -33,6 +33,26 @@ const BookState: React.FC<Props> = ({children}) => {
     });
   };
 
+  const getCheckoutSession = async (priceID: string) => {
+    const quantity = 1
+    const form = {
+      cart: [{
+        quantity,
+        price: priceID,
+      }
+      ]
+    }
+    const res = await axiosClient.post("api/checkout/create-checkout-session", form)
+    console.log(res);
+
+    dispatch({
+      type: "CREATE_CHECKOUT_SESSION",
+      payload: res.data.session.url
+    })
+
+    
+  }
+
   const createBook = async (form: Book) => {
     const res = await axiosClient.post("books/create", form);
     console.log(res);
@@ -63,11 +83,13 @@ const BookState: React.FC<Props> = ({children}) => {
     value={{
         books: globalState.books,
         singleBook: globalState.singleBook,
+        checkoutURL: globalState.checkoutURL,
         getBooks,
         getBook,
         createBook,
         updateBook,
-        deleteBook
+        deleteBook,
+        getCheckoutSession
     }}>
       {children}
     </BookContext.Provider>
