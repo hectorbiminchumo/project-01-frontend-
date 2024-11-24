@@ -22,7 +22,6 @@ function BookItem({book}) {
                 <h3>{book.name}</h3>
                 <p className='book-item-price'>{currencyFormatter.format(book.price)}</p>
                 <p className='book-item-description'>{book.description}</p>
-                <p>PrecioID: {book.priceID}</p>
             </div>
             <p className='book-item-actions'>
                 <Button onClick={handleAddBookToCart}>Add to Cart</Button>
