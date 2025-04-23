@@ -58,14 +58,18 @@ function Checkout() {
   const buyStripe = async () => {
     try {
        const stripe = await stripePromise
-       const res = await makePaymentRequest.post("/api/orders", {
+       const res = await makePaymentRequest.post("orders/create", {
           products: cartCtx.items
        })
        await stripe?.redirectToCheckout({
         sessionId: res.data.stripeSession.id
        })
+       console.log('tryyyyy');
+       
     } catch (error) {
       console.log(error)
+      console.log('errorrrr');
+      
     }
   }
 
