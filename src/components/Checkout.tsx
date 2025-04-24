@@ -64,11 +64,9 @@ function Checkout() {
        await stripe?.redirectToCheckout({
         sessionId: res.data.stripeSession.id
        })
-       console.log('tryyyyy');
        
     } catch (error) {
       console.log(error)
-      console.log('errorrrr');
       
     }
   }

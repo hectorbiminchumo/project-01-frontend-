@@ -43,7 +43,6 @@ const BookState: React.FC<Props> = ({children}) => {
       ]
     }
     const res = await axiosClient.post("api/checkout/create-checkout-session", form)
-    console.log(res);
 
     dispatch({
       type: "CREATE_CHECKOUT_SESSION",
