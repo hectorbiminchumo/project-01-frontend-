@@ -18,6 +18,7 @@ export interface Book {
 export interface BookState {
     books: Book[];
     singleBook: Book;
+    checkoutURL: string;
   }
   
   export const initialState: BookState = {
@@ -30,7 +31,8 @@ export interface BookState {
       image: "",
       pages: "",
       quantity: 0,
-    }
+    },
+    checkoutURL: ""
   };
   export interface CartState {
     items: Book[];

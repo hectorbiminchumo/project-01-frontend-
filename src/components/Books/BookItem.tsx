@@ -10,6 +10,7 @@ function BookItem({book}) {
     cartCtx?.addItem(book)
   }
   
+  
   return (
     <li className='book-item'>
         <article>

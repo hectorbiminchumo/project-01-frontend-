@@ -3,8 +3,8 @@ import { Book, BookState } from '../../interface/interface';
 
 // Define the action type with possible actions and payloads
 interface Action {
-  type: "GET_BOOK" | "UPDATE_BOOK" | "GET_BOOKS";
-  payload: Book | Book[];
+  type: "GET_BOOK" | "UPDATE_BOOK" | "GET_BOOKS" | "CREATE_CHECKOUT_SESSION";
+  payload: Book | Book[] | string;
 }
 
 // Reducer function with proper typing
@@ -12,6 +12,11 @@ const reducer = (globalState: BookState, action: Action): BookState => {
 
   switch (action.type) {
 
+    case "CREATE_CHECKOUT_SESSION":
+      return {
+        ...globalState,
+        checkoutURL: action.payload as string,
+      }
     case "GET_BOOK":
     case "UPDATE_BOOK":
       return {

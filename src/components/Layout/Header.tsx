@@ -72,7 +72,7 @@ export default function Header() {
 
                             
                                 <>
-                                    <div className="hidden xl:flex items-center text-gray-600 space-x-5">
+                                    <div className="flex items-center text-gray-600 space-x-5">
                                         <Link className="hover:text-gray-900" to="/profile">
                                         <PersonOutlinedIcon />
                                             <span className="absolute flex ml-5 -mt-5">
@@ -81,9 +81,9 @@ export default function Header() {
                                             </span>
                                         </Link>
                                 
-                                          <ShoppingCartOutlinedIcon />
                                           
-                                          <Button color="success" size="large" onClick={handleShowCart}> Cart ({totalCartItems})</Button>
+                                          <Button color="success" size="large" onClick={handleShowCart}> <ShoppingCartOutlinedIcon />
+                                           ({totalCartItems})</Button>
                                         
                                         <FavoriteBorderOutlinedIcon />
                                         

@@ -6,6 +6,9 @@ import Modal from './UI/Modal';
 import Button from './UI/Button';
 import Input from './UI/Input';
 import { currencyFormatter } from '../util/formating';
+import { loadStripe } from '@stripe/stripe-js';
+import { makePaymentRequest } from './api/payment';
+
 
 
 
@@ -13,6 +16,13 @@ function Checkout() {
   // Use context with proper typing
   const cartCtx = useContext<CartContextType>(CartContext)
   const userProgressCtx = useContext<UserProgressContextType>(UserProgressContext);
+
+  const stripePublishableKey = import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY;
+
+
+  const stripePromise = loadStripe(stripePublishableKey|| '')
+
+  
 
   // Calculate cart total price
   const cartTotal = cartCtx.items.reduce((totalPrice, item) => totalPrice + item.quantity * item.price, 0);
@@ -45,6 +55,22 @@ function Checkout() {
     });
   }
 
+  const buyStripe = async () => {
+    try {
+       const stripe = await stripePromise
+       const res = await makePaymentRequest.post("orders/create", {
+          products: cartCtx.items
+       })
+       await stripe?.redirectToCheckout({
+        sessionId: res.data.stripeSession.id
+       })
+       
+    } catch (error) {
+      console.log(error)
+      
+    }
+  }
+
   return (
     <Modal open={userProgressCtx.progress ==='checkout'} onClose={handleClose}>
       <form onSubmit={handleSubmit}>
@@ -64,7 +90,7 @@ function Checkout() {
           <Button type="button" textOnly onClick={handleClose}>
             Close
           </Button>
-          <Button type="submit">Submit Order</Button>
+          <Button type="submit" onClick={buyStripe}>Submit Order</Button>
         </p>
       </form>
     </Modal>

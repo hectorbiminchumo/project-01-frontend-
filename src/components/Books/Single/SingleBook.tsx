@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 export default function SingleBook() {
   
   const ctx = useContext(BookContext);
-  const { getBook, singleBook, deleteBook } = ctx;
+  const { getBook, singleBook, deleteBook, getCheckoutSession, checkoutURL } = ctx;
   const params = useParams();
   const id = params.id;
   const currentUser = { admin: false };
@@ -15,7 +15,24 @@ export default function SingleBook() {
 
   useEffect(() => {
     getBook(id);
-  }, []);
+    }, []);
+  
+    useEffect(() => {
+      if(checkoutURL.length){
+        window.location.href = checkoutURL
+      }
+    }, [checkoutURL])
+
+    
+
+  const handleClick = async (e) => {
+    e.preventDefault()
+    try {
+      await getCheckoutSession(singleBook.priceID)
+    } catch (error) {
+      console.error("Error generating payment URL:", error)
+    }
+  }
 
   return (
     <>
@@ -127,7 +144,7 @@ export default function SingleBook() {
 <>
 
         <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
-          <button type="button" className="w-full bg-[#557C55] border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-[#A6CF98] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500"  >Add to Cart</button>
+          <button onClick={ (e) => handleClick(e)} type="button" className="w-full bg-[#557C55] border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-[#A6CF98] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500"  >Buy Book</button>
         
         <Link to="/books">
           <button type="button" className="w-full bg-[#F2FFE9] border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-[#557C55] hover:bg-[#A6CF98] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500">More Books</button>
